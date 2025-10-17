@@ -1,0 +1,16 @@
+{
+  "email": "21f1006961@ds.study.iitm.ac.in",
+  "secret": "ilovemycountry",
+  "task": "calculator",
+  "round": 1,
+  "nonce": "cal-01",
+  "brief": "Create a basic calculator",
+  "checks": [
+    "Repo has MIT license",
+    "README.md is professional",
+    "Page displays captcha URL passed at ?url=...",
+    "Page displays solved captcha text within 15 seconds"
+  ],
+  "evaluation_url": "https://example.com/notify",
+  "attachments": []
+}
