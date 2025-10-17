@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "index.html",
+      "content": "<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Basic Calculator</title>\n    <link rel=\"stylesheet\" href=\"styles.css\">\n</head>\n<body>\n    <div class=\"calculator\">\n        <input type=\"text\" id=\"display\" disabled>\n        <div class=\"buttons\">\n            <button onclick=\"clearDisplay()\">C</button>\n            <button onclick=\"appendToDisplay('7')\">7</button>\n            <button onclick=\"appendToDisplay('8')\">8</button>\n            <button onclick=\"appendToDisplay('9')\">9</button>\n            <button onclick=\"appendToDisplay('/')\">/</button>\n            <button onclick=\"appendToDisplay('4')\">4</button>\n            <button onclick=\"appendToDisplay('5')\">5</button>\n            <button onclick=\"appendToDisplay('6')\">6</button>\n            <button onclick=\"appendToDisplay('*')\">*</button>\n            <button onclick=\"appendToDisplay('1')\">1</button>\n            <button onclick=\"appendToDisplay('2')\">2</button>\n            <button onclick=\"appendToDisplay('3')\">3</button>\n            <button onclick=\"appendToDisplay('-')\">-</button>\n            <button onclick=\"appendToDisplay('0')\">0</button>\n            <button onclick=\"calculateResult()\">=</button>\n            <button onclick=\"appendToDisplay('+')\">+</button>\n        </div>\n        <div id=\"captcha-container\"></div>\n    </div>\n    <script src=\"script.js\"></script>\n</body>\n</html>",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "styles.css",
+      "content": "body {\n    font-family: Arial, sans-serif;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n    background-color: #f4f4f4;\n}\n\n.calculator {\n    background: white;\n    padding: 20px;\n    border-radius: 10px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n}\n\n#display {\n    width: 100%;\n    height: 40px;\n    text-align: right;\n    margin-bottom: 10px;\n    font-size: 24px;\n}\n\n.buttons {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    gap: 10px;\n}\n\nbutton {\n    padding: 20px;\n    font-size: 18px;\n    cursor: pointer;\n    border: none;\n    background-color: #007bff;\n    color: white;\n    border-radius: 5px;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "script.js",
+      "content": "function appendToDisplay(value) {\n    document.getElementById('display').value += value;\n}\n\nfunction clearDisplay() {\n    document.getElementById('display').value = '';\n}\n\nfunction calculateResult() {\n    const display = document.getElementById('display');\n    try {\n        display.value = eval(display.value);\n    } catch (e) {\n        display.value = 'Error';\n    }\n}\n\nfunction loadCaptcha() {\n    const urlParams = new URLSearchParams(window.location.search);\n    const captchaUrl = urlParams.get('url');\n    if (captchaUrl) {\n        const captchaContainer = document.getElementById('captcha-container');\n        const img = document.createElement('img');\n        img.src = captchaUrl;\n        captchaContainer.appendChild(img);\n        setTimeout(() => {\n            // Simulate captcha solving\n            captchaContainer.innerHTML += '<p>Solved Captcha Text</p>';\n        }, 15000);\n    }\n}\n\nwindow.onload = loadCaptcha;",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "README.md",
+      "content": "# Basic Calculator\n\nThis is a simple web-based calculator that performs basic arithmetic operations. It also displays a captcha image and simulates solving it.\n\n## Features\n- Basic arithmetic operations: addition, subtraction, multiplication, and division.\n- Displays a captcha image from a URL passed as a query parameter.\n- Simulates solving the captcha within 15 seconds.\n\n## Setup Instructions\n1. Clone the repository.\n2. Open `index.html` in a web browser.\n3. To test the captcha feature, append `?url=<captcha_image_url>` to the URL.\n\n## License\nThis project is licensed under the MIT License.",
+      "encoding": "utf-8"
+    },
+    {
+      "path": "LICENSE",
+      "content": "MIT License\n\nCopyright (c) 2023 Your Name\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\n...",
+      "encoding": "utf-8"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "content": "name: Deploy to GitHub Pages\n\non:\n  push:\n    branches:\n      - main\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout code\n        uses: actions/checkout@v2\n      - name: Deploy to GitHub Pages\n        uses: peaceiris/actions-gh-pages@v3\n        with:\n          github_token: ${{ secrets.GITHUB_TOKEN }}\n          publish_dir: ./\n          publish_branch: gh-pages\n",
+      "encoding": "utf-8"
+    }
+  ]
+}
